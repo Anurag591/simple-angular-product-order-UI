@@ -1,0 +1,115 @@
+<div>
+  <div class="add-button">
+    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#newOrder">Add Orders</button>
+  </div>
+  <div>
+    <table class="first" *ngIf = "ordersList.length > 0">
+      <thead>
+          <tr>
+              <th>S No.</th>
+              <th>Customer Name</th>
+              <th>Items</th>
+              <th>Amount</th>
+              <th>Status</th>
+              <th>Action</th>
+              <th>Details</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr class="border-table" *ngFor = "let item of ordersList; let i = index">
+              <td>{{i + 1}}</td>
+              <td>{{item.customerName}}</td>
+              <td>{{item.items}}</td>
+              <td>{{item.amount}}</td>
+              <td>{{item.status}}</td>
+              <!-- <td [ngStyle] = "{'color': user.status ? 'green': 'red'}">{{user.status ? 'Available' : 'Not Available'}}</td> -->
+              <td>
+                  <button class="change-status btn btn-primary" (click) = "changeStatus(i)">Change Status</button>
+              </td>
+              <td>
+                <button class="details btn btn-warning" data-toggle="modal" data-target="#myModal" (click)="fetchDetails(i)">Details</button>
+              </td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- modal -->
+
+</div>
+
+<div id="newOrder" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Add New Order Details</h4> 
+      </div>
+      <div class="modal-body add-document-body">
+          <div class="model-body">
+              <label for="customerName">Customer Name</label>
+              <input type="text" class="form-control" placeholder="Customer Name" name="customerName" [(ngModel)] = "newOrderForm.customerName">
+              <label for="items">Items</label>
+              <input type="text" class="form-control" placeholder="Items" name="items" [(ngModel)] = "newOrderForm.items">
+              <label for="amount">Amount</label>
+              <input type="text" class="form-control" placeholder="Amount" name="amount" [(ngModel)] = "newOrderForm.amount">
+              <label for="amount">Address</label>
+              <input type="text" class="form-control" placeholder="Address" name="address" [(ngModel)] = "newOrderForm.address">
+              <div class="outer">
+                <div class="div" *ngFor = "let item of newOrderForm.orderDetails; let i=index">
+                  <label for="itemName">Items Name</label>
+                  <input [(ngModel)] = "item.itemName" class="form-control" type="text" name="itemName" placeholder="Item Name" >
+                  <input [(ngModel)] = "item.price" class="form-control" type="text" name="price" placeholder="Price" >
+                  <em class="fa fa-times" title="delete this row" (click) = "addNewItem(i)"></em>
+                  <!-- <br *ngIf = "i && !i%5"> -->
+                </div>
+                <p style="text-align: right;">
+                    <button (click) = "addNewItem(false)">Add New</button>
+                </p>
+            </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+          <button class="add-staff-btn cancel-button btn btn-primary" (click) = "addNewOrder()" data-dismiss="modal">Add New Order</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Order Details</h4>
+      </div>
+      <div class="modal-body">
+        <div>
+          <label for="customerName">Customer Name</label>
+          <input type="text" class="form-control" [value]="orderDetails?.customerName" readonly>
+          <label for="customerName">Delivery Address</label>
+          <input type="text" class="form-control" [value]="orderDetails?.address" readonly>
+        </div>
+        <div *ngFor="let item of orderDetails?.orderDetails">
+        <label for="customerName">Items Name</label>
+        <input type="text" class="form-control" [value]="item.itemName" readonly>
+        <label for="items">Price</label>
+        <input type="text" class="form-control" [value]="item.price" readonly>
+        </div>
+        <div>
+          <label for="customerName">Total Price</label>
+          <input type="text" class="form-control" [value]="orderDetails?.amount" readonly>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>

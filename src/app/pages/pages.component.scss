@@ -1,0 +1,34 @@
+.add-button {
+    display: flex;
+    justify-content: flex-end;
+    margin: 30px;
+}
+table {
+
+    text-align: center;
+    width: 80vw;
+    margin-left: 4%;
+  
+  
+    td {
+        color: #000;
+        font-family: "SF_displayRegular", sans-serif;
+        padding: 10px;
+        font-size: 15px;
+        max-width: 200px;
+        text-align: left;
+        max-width: 200px;
+    }
+  
+    th {
+        color: #818181;
+        font-family: "SF_displayLight", sans-serif;
+        font-weight: 300;
+        padding: 10px;
+        text-align: left;
+    }
+  }
+  
+  .border-table {
+    border-bottom: 0.9px solid #e7e3e3;
+  }
