@@ -78,6 +78,7 @@ newOrderForm = {
   address: '',
   orderDetails: []
 };
+  // tslint:disable-next-line:max-line-length
   orderDetails: { customerName: string; items: number; amount: number; status: string; address: string; orderDetails: { itemName: string; price: number; }[]; };
   constructor() { }
 

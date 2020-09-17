@@ -22,7 +22,6 @@
               <td>{{item.items}}</td>
               <td>{{item.amount}}</td>
               <td>{{item.status}}</td>
-              <!-- <td [ngStyle] = "{'color': user.status ? 'green': 'red'}">{{user.status ? 'Available' : 'Not Available'}}</td> -->
               <td>
                   <button class="change-status btn btn-primary" (click) = "changeStatus(i)">Change Status</button>
               </td>
@@ -61,9 +60,9 @@
                 <div class="div" *ngFor = "let item of newOrderForm.orderDetails; let i=index">
                   <label for="itemName">Items Name</label>
                   <input [(ngModel)] = "item.itemName" class="form-control" type="text" name="itemName" placeholder="Item Name" >
+                  <label for="price">Price</label>
                   <input [(ngModel)] = "item.price" class="form-control" type="text" name="price" placeholder="Price" >
                   <em class="fa fa-times" title="delete this row" (click) = "addNewItem(i)"></em>
-                  <!-- <br *ngIf = "i && !i%5"> -->
                 </div>
                 <p style="text-align: right;">
                     <button (click) = "addNewItem(false)">Add New</button>
